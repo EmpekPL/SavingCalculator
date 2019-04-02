@@ -1,0 +1,2 @@
+# SavingCalculator
+JS training project
