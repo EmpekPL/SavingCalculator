@@ -1,5 +1,5 @@
 
-let savePerM = 0;
+let savePerMonth = 0;
 let intAmount = 0
 let rate = 0;
 let years = 0;
@@ -20,13 +20,15 @@ function StartCalculating(){
     calculateResult();
 }
 
+
+//Preparing stage
 function clearOutput() {
     document.getElementById("result_data").innerHTML = "";
-    document.getElementById('annualSavings').innerHTML="";
+    document.getElementById('annualSavings').innerHTML= "";
 }
 
 function clearOldResults() {
-     savePerM = 0;
+     savePerMonth = 0;
      intAmount = 0
      rate = 0;
      years = 0;
@@ -36,11 +38,19 @@ function clearOldResults() {
      annualIntrest = 0;
 }
 
+function getData() {
+    intAmount = document.getElementById("initial_Amount").value;
+    savePerMonth = document.getElementById("savings_per_month").value;
+    rate = document.getElementById("rate").value;
+    years = document.getElementById("years").value;
+}
+
+//Calculate stage
 function calculateResult() {
     sumOfSaving += parseInt(intAmount); 
     for (let i = 0; i < years; i++) {
-        annualIntrestAr[i] = (savePerM * 12 + sumOfSaving) * (rate / 100);
-        sumOfSaving +=  savePerM * 12 + annualIntrestAr[i];
+        annualIntrestAr[i] = (savePerMonth * 12 + sumOfSaving) * (rate / 100);
+        sumOfSaving +=  savePerMonth * 12 + annualIntrestAr[i];
         annualSevings[i] = sumOfSaving;
 
     }
@@ -50,31 +60,18 @@ function calculateResult() {
     printAnnualData();
 }
 
-function getData() {
-    intAmount = document.getElementById("intAmt").value;
-    savePerM = document.getElementById("svPM").value;
-    rate = document.getElementById("rate").value;
-    years = document.getElementById("years").value;
-}
-
-
-
-
-
 function printAnnualData() {
     let annualData = document.getElementById("annualSavings");
     let msg = '';
-    var roundedPrSv;
-    var roundedSvAr;
+    var roundedPrSv = formatNumbers(annualIntrestAr);
+    var roundedSvAr = formatNumbers(annualSevings);
+
     for (let i = 0; i < annualSevings.length; i++) {
-        roundedSvAr = Math.round(annualSevings[i]);
-        roundedSvAr = roundedSvAr.toLocaleString();
-
-        roundedPrSv = Math.round(annualIntrestAr[i]);
-        roundedPrSv = roundedPrSv.toLocaleString();
+        
+        let roundedAnnualIntrests = roundedPrSv[i].toLocaleString();
+        let roundedAnnualSavings = roundedSvAr[i].toLocaleString();
        
-
-        msg += (i + 1) + " : " + roundedSvAr + ' included ' + roundedPrSv + ' intrests'  + " <br>";
+        msg += (i + 1) + " : " + roundedAnnualSavings + ' included ' + roundedAnnualIntrests + ' intrests'  + " <br>";
     }
     annualData.innerHTML += msg;
     let yearsArray = [];
@@ -84,7 +81,7 @@ function printAnnualData() {
             yearsArray.push(i);
         }
     
-    drawChart(annualSevings, yearsArray);
+    drawChart(roundedSvAr, roundedPrSv);
     }
 
 function drawChart(annualSevings, yearsArray){
@@ -113,12 +110,11 @@ function drawChart(annualSevings, yearsArray){
     });
 }
 
-function sumOfIntrests(){
-    let msg;
-    let sumOfIntr=0;
-    for(var i = 0; i< annualIntrestAr.length; i++ ){
-        sumOfIntr+= annualIntrestAr[i];
-    } 
+function formatNumbers(oldArray){
+var formatedArray=[];
+for (let i = 0; i < oldArray.length; i++) {
+    formatedArray[i] = Math.round(oldArray[i]);
+}
 
-
+return formatedArray;
 }
