@@ -1,3 +1,33 @@
 *{
     margin: 10px 10px;
 }
+
+.wrap {
+    border: 2px black solid;
+width: 30%;
+min-width: 250px;
+margin: auto;
+
+}
+.wrap h2 {
+    text-align: center;
+}
+form div{
+display: flex;
+flex-wrap: wrap;
+}
+form p {
+    display: block;
+width: 130px;    
+
+}
+#calcBtn{
+    width: 150px;
+    height: 40px;
+    font-size: 1.4em;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+}

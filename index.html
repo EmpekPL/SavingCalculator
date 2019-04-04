@@ -10,15 +10,15 @@
 <body>
     <div class="wrap">
         <h2>Saving calculator</h2>
-        <div id="imput_data"></div>
+        <div id="input_data"></div>
         <form>
-            <div>Initial Amount <input type="number" id="intAmt" value="10000"> </div>
+            <div><p>Initial Amount :</p> <input type="number" id="initial_Amount" value="10000"> </div>
             <div>
-                Monthly Deposit <input type="number" name="savings per month" id="svPM" value="1200">
+                <p>Monthly Deposit :</p> <input type="number" name="savings per month" id="savings_per_month" value="1200">
             </div>
-            <div> Number of years <input type="number" name="how many years?" id="years" value="13">
+            <div> <p>Number of years :</p> <input type="number" name="how many years?" id="years" value="13">
             </div>
-            <div> Annual Rate <input type="number" id="rate" name="rate" value="10" >
+            <div> <p>Annual Rate :</p> <input type="number" id="rate" name="rate" value="10" >
             </div>
 
         </form>
@@ -26,13 +26,14 @@
         <div id="calcutate">
             <input type="button"  id="calcBtn" onclick="StartCalculating()"  value='calculate'>
         </div>
+        <hr>
         <h2>You will collect :</h2>
         <div id="result_data"></div>
-        <p>======================</p>
+        <hr>
         
         <h2>Savings by year :</h2>
 
-        <div id="montlySavings"></div>
+        <div id="annualSavings"></div>
         <script  src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <canvas id='savingChart' style= "max-width:400px; max-height:400px">  </canvas>
     </div>
